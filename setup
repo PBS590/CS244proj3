@@ -1,3 +1,25 @@
-#! /bin/bash
+#!/bin/bash
 
-source ./setupOldMongo
+# Installs and configures MongoDB for a Google Compute Engine VM node
+# Adapted from: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
+# MongoDB public GPG Key
+GPGKEY="9DA31620334BD75D9DCB49F368818C72E52529D4"
+
+# Import the public key used by the package management system
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv $GPGKEY
+
+# Create a list file for MongoDB
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+# Reload local package database
+sudo apt-get update
+
+# Install the latest stable version of MongoDB
+sudo apt-get install -y mongodb-org
+
+# Add data directories and permissions for mongod service
+sudo mkdir /data
+sudo mkdir /data/db
+sudo chmod 777 /data
+sudo chmod 777 /data/db
