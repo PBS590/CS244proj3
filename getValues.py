@@ -16,7 +16,9 @@ values = set()
 f = open(filename, "r")
 
 output_file = "output.txt"
+os.system("rm output.txt")
 out = open(output_file, "a+")
+out.write("Column: " + str(column)+ " \n")
 
 def getValues():
 	numValues = 0
