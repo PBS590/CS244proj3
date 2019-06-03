@@ -31,7 +31,8 @@ def getValues():
             valuesIndex = 0;
             for line in f:
                while(rowsIndex < len(rows) and valuesIndex == rows[rowsIndex]):
-                   columns = line.strip().split(",")
+                   line = line.replace(",", "|")
+		   columns = line.strip().split("|")
                    print("Adding: " + str(rows[rowsIndex]))
 		   values.append(columns[column])
                    rowsIndex += 1

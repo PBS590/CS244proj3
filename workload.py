@@ -5,8 +5,9 @@ import os
 import subprocess
 
 start = time.time()
+os.system("mongo < workload.js")
 
-subprocess.call("./workload.sh", shell=True)
+#subprocess.call("./workload.sh", shell=True)
 
 end = time.time()
 
